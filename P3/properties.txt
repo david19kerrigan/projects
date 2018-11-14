@@ -1,0 +1,4 @@
+non-empty size: 812
+num of items: 1124
+load factor: 0.548828125
+collision length: 1.3842364532019704
