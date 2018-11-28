@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Shop</title>
+</head>
+<body>
+
+<h1>Buy illegal movies</h1>
+
+<script type="text/javascript">
+
+    //names here are self explanatory
+    //total items and total price
+    var items = 0;
+    var price = 0;
+
+    //movies one->six as listed on the assignment page
+    //movie one is episode IV DVD, two is episode V DVD and so on
+    var movieOneCount = 0;
+    var movieTwoCount = 0;
+    var movieThreeCount =0;
+    var movieFourCount = 0;
+    var movieFiveCount = 0;
+    var movieSixCount = 0;
+
+    //this method takes the movie number as "number" and quantity to add/subtract as "quant"
+    //I add to the movie count and reset if it falls below 0
+    function add(number,quant) {
+
+        if(number == 1){
+            movieOneCount += quant;
+            if(movieOneCount < 0){
+                movieOneCount = 0;
+            }
+        }
+        if(number == 2){
+            movieTwoCount += quant;
+            if(movieTwoCount < 0){
+                movieTwoCount = 0;
+            }
+        }
+        if(number == 3){
+            movieThreeCount += quant;
+            if(movieThreeCount < 0){
+                movieThreeCount = 0;
+            }
+        }
+        if(number == 4){
+            movieFourCount += quant;
+            if(movieFourCount < 0){
+                movieFourCount = 0;
+            }
+        }
+        if(number == 5){
+            movieFiveCount += quant;
+            if(movieFiveCount < 0){
+                movieFiveCount = 0;
+            }
+        }
+        if(number == 6){
+            movieSixCount += quant;
+            if(movieSixCount < 0){
+                movieSixCount = 0;
+            }
+        }
+
+        //here comes stretch goal #1 as listed on the assignment page
+        //four conditions for each saving possibility
+        //condition one if the DVD's are getting a discount
+
+        if((movieOneCount > 0 && movieTwoCount > 0 && movieThreeCount > 0) && (movieFourCount == 0 || movieFiveCount == 0 || movieSixCount == 0)){
+            document.getElementById("price").innerHTML = (movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20)*.9 + movieFourCount*25 + movieFiveCount*25 + movieSixCount*25;
+            document.getElementById("savings").innerHTML = (movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20)*.1;
+        }
+
+        //condition two if the BluRay's are getting a discount
+        if((movieOneCount == 0 || movieTwoCount == 0 || movieThreeCount == 0) && (movieFourCount > 0 && movieFiveCount > 0 && movieSixCount > 0)){
+            document.getElementById("price").innerHTML = (movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20) + (movieFourCount*25 + movieFiveCount*25 + movieSixCount*25)*.85;
+            document.getElementById("savings").innerHTML = (movieFourCount*25 + movieFiveCount*25 + movieSixCount*25)*.15   ;
+        }
+
+        //condition 3 if we have no discounts
+        if((movieOneCount == 0 || movieTwoCount == 0 || movieThreeCount == 0) && (movieFourCount == 0 || movieFiveCount == 0 || movieSixCount == 0)){
+            document.getElementById("price").innerHTML = movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20 + movieFourCount*25 + movieFiveCount*25 + movieSixCount*25;
+            document.getElementById("savings").innerHTML = 0;
+        }
+
+        //condition 4 if both dvd's and bluray's are discounted
+        if(movieOneCount > 0 && movieTwoCount > 0 && movieThreeCount > 0 && movieFourCount > 0 && movieFiveCount > 0 && movieSixCount > 0){
+            document.getElementById("price").innerHTML = (movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20)*.9 + (movieFourCount*25 + movieFiveCount*25 + movieSixCount*25)*.85;
+            document.getElementById("savings").innerHTML = (movieOneCount*20 + movieTwoCount*20 + movieThreeCount*20)*.1 + (movieFourCount*25 + movieFiveCount*25 + movieSixCount*25)*.15;
+        }
+
+        //and make sure the "item" html value is updated
+        document.getElementById("items").innerHTML = movieOneCount+movieTwoCount+movieThreeCount+movieFourCount+movieFiveCount+movieSixCount;
+   
+    };
+    
+    </script>
+    
+    <!--each button works the same way
+        I call the add function passing the movie number and the quantity to add
+        the remove all function works by subtracting a large number from the quantity-->
+    <br>Star Wars Episode IV DVD $20<br>
+    <button type="button" onclick="add(1,1)">add</button>
+    <button type="button" onclick="add(1,-1)">remove</button>
+    <button type="button" onclick="add(1,-999)">remove all</button>
+    <br>
+
+    <br>Star Wars Episode V DVD $20<br>
+    <button type="button" onclick="add(2,1)">add</button>
+    <button type="button" onclick="add(2,-1)">remove</button>
+    <button type="button" onclick="add(2,-999)">remove all</button>
+    <br>    
+
+    <br>Star Wars Episode VI DVD $20<br>
+    <button type="button" onclick="add(3,1)">add</button>
+    <button type="button" onclick="add(3,-1)">remove</button>
+    <button type="button" onclick="add(3,-999)">remove all</button>
+    <br>
+    <br>Star Wars Episode IV BluRay $25<br>
+    <button type="button" onclick="add(4,1)">add</button>
+    <button type="button" onclick="add(4,-1)">remove</button>
+    <button type="button" onclick="add(4,-999)">remove all</button>
+    <br>
+    <br>Star Wars Episode IV BluRay $25<br>
+    <button type="button" onclick="add(5,1)">add</button>
+    <button type="button" onclick="add(5,-1)">remove</button>
+    <button type="button" onclick="add(5,-999)">remove all</button>
+    <br>
+    <br>Star Wars Episode IV BluRay $25<br>
+    <button type="button" onclick="add(6,1)">add</button>
+    <button type="button" onclick="add(6,-1)">remove</button>
+    <button type="button" onclick="add(6,-999)">remove all</button>
+    <br>
+
+    <!--display the results taken from the javascript sciprt and we're done-->
+
+    <p>Total: <a id="price">0</a></p>
+    <p>Items: <a id="items">0</a></p>
+    <p>Savings: <a id="savings">0</a></p>
+
+</body>
+</html>     
