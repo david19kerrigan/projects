@@ -1,0 +1,10 @@
+From the sorting excel table which was produced with a single run of the Reporting1 file and
+formatting into a table.  The fastest method for small and long arrays both sorted and 
+reversed was quicksort.  HeapSort and MergeSort were of comparitive speeds for a sorted array
+but for a reversed array MergeSort was quicker than HeapSort, but not as quick as QuickSort.
+Based on the mean and variance values, HeapSort was by far the quickest for small random arrays, followed by 
+quicksort and mergesort.  For large arrays, Quicksort showed the quickest sorting time.
+
+For random arrays the variation was huge which means the sorting times varied greatly since each array
+was completely random.  Sorting with lower mean and lower variance means more efficiency and vice 
+versa.  
